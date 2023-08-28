@@ -1,0 +1,18 @@
+{% extends "page.html" %}
+
+{% block main %}
+<div id="react-admin-hook">
+  <script id="jupyterhub-admin-config">
+    window.api_page_limit = parseInt("{{ api_page_limit|safe }}")
+    window.base_url = "{{ base_url|safe }}"
+  </script>
+  <script src={{ static_url("js/admin-react.js") }}></script>
+</div>
+{% endblock %}
+
+<!--Removed footer-->
+
+{% block script %}
+{{ super() }}
+<script type="text/javascript">require(["admin"]);</script>
+{% endblock %}
