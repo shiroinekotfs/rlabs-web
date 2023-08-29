@@ -94,8 +94,8 @@ require(["jquery", "moment", "jhapi"], function ($, moment, JHAPI) {
       success: function () {
         $("#stop").hide();
         $("#start")
-          .text("Start My Server")
-          .attr("title", "Start your default server")
+          .text("Start My Lab")
+          .attr("title", "Start your default lab")
           .attr("disabled", false)
           .attr("href", base_url + "spawn/" + user)
           .off("click");
