@@ -23,10 +23,8 @@
 
 <!DOCTYPE HTML>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-
     <title>Research Labs</title>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -115,116 +113,87 @@
         <div class="h-full flex items-center pr-16">
           <div class="jp-ibmq--logo">
             <a href="/hub">
-              <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="10" height="24" viewBox="0 0 32 32" aria-hidden="true" class="ml-16 mr-24">
+              <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 32 32" aria-hidden="true" width="10">
               </svg> <span class="ml-4 pr-16 font-600">Research Labs</span>
             </a>
           </div>
-        </div>
+        {% if user %}
+          <div class="jp-ibmq--logo">
+            <a href="{{base_url}}home">
+              <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 32 32" aria-hidden="true" width="10">
+              </svg> <span class="pr-16">Home</span>
+            </a>
+          </div>
+          <div class="jp-ibmq--logo">
+            <a href="{{base_url}}change-password">
+              <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 32 32" aria-hidden="true" width="10">
+              </svg> <span class="pr-16">Change password</span>
+            </a>
+          </div>
+          {% if user.admin %}
+            <div class="jp-ibmq--logo">
+              <a href="{{base_url}}authorize">
+                <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 32 32" aria-hidden="true" width="10">
+                </svg> <span class="pr-16">Authorize Users</span>
+              </a>
+            </div>
+          {% endif %}
+          <div class="jp-ibmq--logo">
+            <a href="{{base_url}}token">
+              <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 32 32" aria-hidden="true" width="10">
+              </svg> <span class="pr-16">Token</span>
+            </a>
+          </div>
+          {% if 'admin-ui' in parsed_scopes %}
+            <div class="jp-ibmq--logo">
+              <a href="{{base_url}}admin">
+                <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="24" viewBox="0 0 32 32" aria-hidden="true" width="10">
+                </svg> <span class="pr-16">Admin Panel</span>
+              </a>
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
         <div class="theme-g100 flex flex-1 items-center justify-end">
           <div class="relative">
             <div class="jp-ibmq--overflow-menu">
-              <a target="_blank" href="https://github.com/TheFlightSims">
+              {% if user %}
+              <a href="{{logout_url}}">
                 <button class="w-48 h-48 flex items-center justify-center focus:outline-none jp-ibmq--overflow-menu-trigger false">
-                  <svg focusable="false" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
-                    <path d="M16,2A14,14,0,1,0,30,16,14,14,0,0,0,16,2Zm0,26A12,12,0,1,1,28,16,12,12,0,0,1,16,28Z"></path>
-                    <circle cx="16" cy="23.5" r="1.5"></circle>
-                    <path d="M17,8H15.5A4.49,4.49,0,0,0,11,12.5V13h2v-.5A2.5,2.5,0,0,1,15.5,10H17a2.5,2.5,0,0,1,0,5H15v4.5h2V17a4.5,4.5,0,0,0,0-9Z"></path>
+                  <svg id="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+                    <defs>
+                      <style>
+                        .cls-1{fill:none;}
+                      </style>
+                    </defs>
+                    <path d="M6,30H18a2.0023,2.0023,0,0,0,2-2V25H18v3H6V4H18V7h2V4a2.0023,2.0023,0,0,0-2-2H6A2.0023,2.0023,0,0,0,4,4V28A2.0023,2.0023,0,0,0,6,30Z"/>
+                    <polygon points="20.586 20.586 24.172 17 10 17 10 15 24.172 15 20.586 11.414 22 10 28 16 22 22 20.586 20.586"/>
+                    <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
                   </svg>
                 </button>
               </a>
+              {% else %}
+              <a href="{{login_url}}">
+                <button class="w-48 h-48 flex items-center justify-center focus:outline-none jp-ibmq--overflow-menu-trigger false">
+                  <svg id="icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+                    <defs>
+                      <style>
+                        .cls-1{fill:none;}
+                      </style>
+                    </defs>
+                    <path d="M6,30H18a2.0023,2.0023,0,0,0,2-2V25H18v3H6V4H18V7h2V4a2.0023,2.0023,0,0,0-2-2H6A2.0023,2.0023,0,0,0,4,4V28A2.0023,2.0023,0,0,0,6,30Z"/>
+                    <polygon points="20.586 20.586 24.172 17 10 17 10 15 24.172 15 20.586 11.414 22 10 28 16 22 22 20.586 20.586"/>
+                    <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+                  </svg>
+                </button>
+              </a>
+              {% endif %}
             </div>
-          </div>
-          <div role="presentation" class="bx--modal">
-            <span tabindex="0" role="link" class="bx--visually-hidden">Focus sentinel</span>
-            <div class="bx--modal-container bx--modal-container--xs" role="dialog" aria-modal="true">
-              <div class="bx--modal-content">
-                <div class="jp-ibmq-inline-loading">
-                  <div class="bx--inline-loading" aria-live="assertive">
-                    <div class="bx--inline-loading__animation">
-                      <div aria-atomic="true" aria-labelledby="loading-id-1" aria-live="assertive" class="bx--loading bx--loading--small">
-                        <label id="loading-id-1" class="bx--visually-hidden">Active loading indicator</label>
-                        <svg class="bx--loading__svg" viewBox="0 0 100 100">
-                          <title>Active loading indicator</title>
-                          <circle class="bx--loading__background" cx="50%" cy="50%" r="44"></circle>
-                          <circle class="bx--loading__stroke" cx="50%" cy="50%" r="44"></circle>
-                        </svg>
-                      </div>
-                    </div>
-                  </div> Logging out
-                </div>
-              </div>
-            </div>
-            <span tabindex="0" role="link" class="bx--visually-hidden">Focus sentinel</span>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-
-        {% if user %}
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#thenavbar" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        {% endif %}
-
-      </div>
-
-      <div class="collapse navbar-collapse" id="thenavbar">
-        {% if user %}
-        <ul class="nav navbar-nav">
-          {% block nav_bar_left_items %}
-            <li><a href="{{base_url}}home">Home</a></li>
-            <li><a href="{{base_url}}change-password">Change Password</a></li>
-            {% if user.admin %}
-                <li><a href="{{base_url}}authorize">Authorize Users</a></li>
-            {% endif %}
-            <li><a href="{{base_url}}token">Token</a></li>
-            {% if 'admin-ui' in parsed_scopes %}
-            <li><a href="{{base_url}}admin">Admin</a></li>
-            {% endif %}
-            {% if services %}
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-              {% for service in services %}
-              {% block service scoped %}
-                <li><a class="dropdown-item" href="{{service.prefix}}">{{service.name}}</a></li>
-              {% endblock %}
-              {% endfor %}
-              </ul>
-            </li>
-            {% endif %}
-          {% endblock %}
-        </ul>
-        {% endif %}
-        <ul class="nav navbar-nav navbar-right">
-          {% block nav_bar_right_items %}
-            <li>
-              {% block login_widget %}
-                <span id="login_widget">
-                  {% if user %}
-                    <p class="navbar-text">{{user.name}}</p>
-                    <a id="logout" role="button" class="navbar-btn btn-sm btn btn-default" href="{{logout_url}}"> <i aria-hidden="true" class="fa fa-sign-out"></i> Logout</a>
-                  {% else %}
-                    <a id="login" role="button" class="btn-sm btn navbar-btn btn-default" href="{{login_url}}">Login</a>
-                  {% endif %}
-                </span>
-              {% endblock %}
-            </li>
-          {% endblock %}
-        </ul>
-      </div>
-
-      {% block header %}
-      {% endblock %}
-    </div>
-  </nav>
 {% endblock %}
 
 
