@@ -4,89 +4,364 @@
 {% endif %}
 
 {% block main %}
-<div class="container pt-16">
-  <h1 class="sr-only">Research Labs</h1>
-  <div class="row">
-    <div class="text-center">
-      {% if default_server.active %}
-        <a id="stop" role="button" class="btn btn-lg btn-danger">
-          Stop My Lab
-        </a>
-      {% endif %}
-      <a id="start" role="button" class="btn btn-lg btn-primary" href="{{ url }}">
-      {% if not default_server.active %}Start{% endif %}
-      My Labs
+<link rel="stylesheet" href="{{ static_url("css/home.css") }}" type="text/css"/>
+<div class="min-h-app relative bg-ui-background" data-v-01dcd351="">
+  <div class="bg p-16 pb-24 md:p-32 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-16 md:h-[186px] text-text-on-color" data-v-01dcd351="">
+    <div class="name md:col-span-2 lg:col-span-3 flex flex-col justify-between sm:min-h-[100px]" data-v-01dcd351="">
+      <div class="text-body-compact-01" data-v-01dcd351="">
+        <span>Welcome, {{user.name}}</span>
+      </div>
+      <h1 class="font-300 text-32 md:text-36 lg:text-48 leading-[40px] md:leading-[44px] lg:leading-[56px] m-0" data-v-01dcd351=""> Research Labs </h1>
+    </div>
+    <div class="token flex flex-col justify-end" data-v-01dcd351="">
+      <div class="text-label-01 text-text-0 flex items-center" data-v-01dcd351="">Your current role:</div>
+      <div class="api-token-button mt-8" data-v-352f0f73="" data-v-01dcd351="">
+        <div data-v-352f0f73="">
+          <div data-v-0e85f2e5="" data-v-352f0f73="" class="input duo--TextInputWrapper">
+            <label data-v-0e85f2e5="" for="$$duo_uid_1" class="duo--TextInputWrapper__label"></label>
+            {% if user.admin %}
+              <p>Administrator</p>
+            {% else %}
+              <p>User</p>
+            {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-16 mx-16 md:mx-32 text-heading-compact-01 flex flex-row items-start md:items-center bg-ui-03 rounded" data-v-01dcd351="">
+    <div class="flex-1 p-16 flex flex-col gap-8 md:block" data-v-01dcd351="">
+      <span data-v-01dcd351="">🎉</span>
+      <span data-v-01dcd351="">Research Labs just got updated!</span>
+      <a tabindex="0" href="https://docs.quantum-computing.ibm.com/announcements/product-updates/2023-08-18-new-navigation-and-application-updates" target="_blank" class="font-400 duo--Link" data-v-620a3e4c="" data-v-01dcd351=""> Learn more <svg width="32" height="32" viewBox="0 0 32 32" aria-label="open in new tab" class="duo--Icon duo--IconArrowRight !w-16 !h-16" data-v-01dcd351="" data-v-620a3e4c="">
+          <path d="M17 6l-1.41 1.41L23.17 15H2v2h21.17l-7.58 7.59L17 26l10-10L17 6z"></path>
+        </svg>
       </a>
     </div>
   </div>
-  {% if allow_named_servers %}
-  <h2>
-  Named Labs
-  </h2>
-
-  <p>
-  In addition to your default lab,
-  you may have additional {% if named_server_limit_per_user > 0 %}{{ named_server_limit_per_user }} {% endif %}lab(s) with names.
-  This allows you to have more than one lab running at the same time.
-  </p>
-
-  {% set named_spawners = user.all_spawners(include_default=False)|list %}
-
-  <table class="server-table table table-striped">
-    <thead>
-      <tr>
-        <th>Lab name</th>
-        <th>URL</th>
-        <th>Last activity</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="home-server-row add-server-row">
-        <td colspan="4">
-          <input class="new-server-name" placeholder="Name your lab">
-          <a role="button" class="new-server-btn" class="add-server btn btn-xs btn-primary">
-            Add New Lab
+  <div class="content p-16 pb-40 md:px-32" data-v-01dcd351="">
+    <section class="flex flex-col bg-ui-01 rounded overflow-hidden jobs min-h-[180px]" data-v-15d66aae="" data-v-01dcd351="">
+      <div class="flex justify-between items-start p-16 pb-24" data-v-15d66aae="">
+        <div class="flex items-center mr-48" data-v-15d66aae="">
+          <h2 class="text-heading-compact-01 text-text-01 m-0" data-v-15d66aae="">Your Lab Management System</h2>
+        </div>
+      </div>
+      <div class="p-16 pt-0 text-body-compact-01 text-text-secondary" data-v-15d66aae="">
+        <div class="mb-32 max-w-[400px]" data-v-15d66aae=""> Manange your lab here. <br><br><b>Note: </b>It is recommended that you stop when not in use to reduce server latency as well as attack interface. </div>
+        {% if default_server.active %}
+          <a id="stop" role="button" class="btn btn-lg btn-danger">
+            Stop My Lab
           </a>
-        </td>
-      </tr>
-      {% for spawner in named_spawners %}
-      <tr class="home-server-row" data-server-name="{{ spawner.name }}">
-        {# name #}
-        <td>{{ spawner.name }}</td>
-        {# url #}
-        <td>
-          <a class="server-link {% if not spawner.ready %}hidden{% endif %}" href="{{ user.server_url(spawner.name) }}">
-            {{ user.server_url(spawner.name) }}
+        {% endif %}
+        <a id="start" role="button" class="btn btn-lg btn-primary" href="{{ url }}" target="_blank">
+          {% if not default_server.active %}Start{% endif %}
+          My Labs
           </a>
-        </td>
-        {# activity #}
-        <td class='time-col'>
-          {% if spawner.last_activity %}
-          {{ spawner.last_activity.isoformat() + 'Z' }}
-          {% else %}
-          Never
-          {% endif %}
-        </td>
-        {# actions #}
-        <td>
-          <a role="button" class="stop-server btn btn-xs btn-danger{% if not spawner.active %} hidden{% endif %}" id="stop-{{ spawner.name }}">stop</a>
-          <a role="button" class="start-server btn btn-xs btn-primary {% if spawner.active %} hidden{% endif %}" id="start-{{ spawner.name }}"
-          href="{{ base_url }}spawn/{{ user.name }}/{{ spawner.name }}"
-          >
-            start
+      </div>
+    </section>
+    <div class="cards self-start flex flex-col lg:flex-row gap-16 md:gap-24 lg:gap-16" data-v-01dcd351="">
+      <section class="dashboard-backends flex-1 min-h-[150px] lg:min-h-[300px] md:max-h-[320px]" data-v-4541156c="" data-v-01dcd351="">
+        <div class="systems backend-card bg-active-01 hover:bg-purple-40 dark:hover:bg-purple-60" data-v-4541156c="">
+          <h2 class="text-heading-compact-01 flex items-center justify-between mt-0 mb-32" data-v-4541156c="">
+            <a href="/hub/token" class="after:absolute after:inset-0" data-v-4541156c="">Your public API tokens</a>
+            <svg width="32" height="32" viewBox="0 0 32 32" class="duo--Icon duo--IconArrowRight w-[20px] h-[20px]" data-v-4541156c="">
+              <path d="M17 6l-1.41 1.41L23.17 15H2v2h21.17l-7.58 7.59L17 26l10-10L17 6z"></path>
+            </svg>
+          </h2>
+          <div data-v-4541156c="">
+            <span data-v-4541156c="" class="font-mono text-[60px] font-300 leading-none">Manage</span>
+          </div>
+        </div>
+        <div class="simulators backend-card bg-ui-03 hover:bg-purple-40 dark:hover:bg-purple-60" data-v-4541156c="">
+          <h2 class="text-heading-compact-01 flex items-center justify-between mt-0 mb-32" data-v-4541156c="">
+            <a href="/hub/change-password" class="after:absolute after:inset-0" data-v-4541156c="">Password</a>
+            <svg width="32" height="32" viewBox="0 0 32 32" class="duo--Icon duo--IconArrowRight w-[20px] h-[20px]" data-v-4541156c="">
+              <path d="M17 6l-1.41 1.41L23.17 15H2v2h21.17l-7.58 7.59L17 26l10-10L17 6z"></path>
+            </svg>
+          </h2>
+          <div data-v-4541156c="">
+            <span data-v-4541156c="" class="font-mono text-[60px] font-300 leading-none">View</span>
+          </div>
+        </div>
+        {% if 'admin-ui' in parsed_scopes %}
+        <div class="simulators backend-card bg-ui-03 hover:bg-purple-40 dark:hover:bg-purple-60" data-v-4541156c="">
+          <h2 class="text-heading-compact-01 flex items-center justify-between mt-0 mb-32" data-v-4541156c="">
+            <a href="/hub/admin" class="after:absolute after:inset-0" data-v-4541156c="">Admin Panel</a>
+            <svg width="32" height="32" viewBox="0 0 32 32" class="duo--Icon duo--IconArrowRight w-[20px] h-[20px]" data-v-4541156c="">
+              <path d="M17 6l-1.41 1.41L23.17 15H2v2h21.17l-7.58 7.59L17 26l10-10L17 6z"></path>
+            </svg>
+          </h2>
+          <div data-v-4541156c="">
+            <span data-v-4541156c="" class="font-mono text-[60px] font-300 leading-none">View</span>
+          </div>
+        </div>
+        {% else %}
+          <div role="presentation" class="system-two backend-card bg-ui-03" data-v-4541156c=""></div>
+        {% endif %}
+      </section>
+      <section class="card bg-layer pt-16 pb-8 flex flex-col gap-24 rounded flex-1 min-h-[300px] max-h-[320px]" data-v-4aad0b0b="" data-v-01dcd351="">
+        <div class="flex justify-between px-16 pb-0">
+          <h2 class="text-heading-compact-01 text-text-primary m-0">Lab Notification</h2>
+          <a href="/hub/spawn/administrator" class="text-link-01 hover:text-link-primary-hover transition-colors text-body-compact-01 hover:underline flex items-center gap-4"> Open Lab <svg width="32" height="32" viewBox="0 0 32 32" aria-label="Open in a new tab" class="duo--Icon duo--IconArrowUpRight w-16 h-16">
+              <path d="M26 22h-2l-.001-12.585L7.414 26 6 24.586 22.585 8H10V6h16v16z"></path>
+            </svg>
           </a>
-          <a role="button" class="delete-server btn btn-xs btn-danger{% if spawner.active %} hidden{% endif %}" id="delete-{{ spawner.name }}">delete</a>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  {% endif %}
+        </div>
+        <div class="content flex-1 overflow-x-auto">
+          <div class="card-items" data-v-6e072ef5="" data-v-4aad0b0b="">
+            <div class="guide-card flex flex-col gap-4 px-16 py-[20px] relative hover:bg-hover-ui" data-v-4aad0b0b="" data-v-6e072ef5="">
+              <div class="text-text-secondary text-label-01 mb-4"> Lab Status
+              </div>
+              <div class="text-text-primary text-14 leading-[18px]">
+                <a href="/hub/spawn/administrator" class="after:absolute after:inset-0">
+                  {% if default_server.active %}
+                    <span class="max-2-lines" data-v-4aad0b0b="">Your Lab is running. Click here to view it.</span>
+                  {% else %}
+                    <span class="max-2-lines" data-v-4aad0b0b="">Your Lab is not running. Click here to start it.</span>
+                  {% endif %}
+                </a>
+              </div>
+            </div>
+            <div class="guide-card flex flex-col gap-4 px-16 py-[20px] relative hover:bg-hover-ui" data-v-4aad0b0b="" data-v-6e072ef5="">
+              <div class="text-text-secondary text-label-01 mb-4"> 2FA <span class="ml-8 text-purple-70 dark:text-purple-20 bg-purple-20 dark:bg-purple-70 px-8 py-2 rounded-xl"> Security </span>
+              </div>
+              <div class="text-text-primary text-14 leading-[18px]">
+                <a class="after:absolute after:inset-0">
+                  {% if two_factor_auth %}
+                  <span class="max-2-lines" data-v-4aad0b0b="">
+                    2FA is enabled for your account. You may safe from attackers.
+                  </span>
+                  {% else %}
+                  <span class="max-2-lines" data-v-4aad0b0b="">
+                    2FA is disable for your account. Please enable it, or if disabled by your administrators, contact them.
+                  </span>
+                  {% endif %}
+                </a>
+              </div>
+            </div>
+            {% if 'admin-ui' in parsed_scopes %}
+            <div id='insecure-login-warning' class="guide-card flex flex-col gap-4 px-16 py-[20px] relative hover:bg-hover-ui hidden" data-v-4aad0b0b="" data-v-6e072ef5="">
+              <div class="text-text-secondary text-label-01 mb-4"> HTTP is not enabled 
+                <span class="ml-8 text-purple-70 dark:text-purple-20 bg-purple-20 dark:bg-purple-70 px-8 py-2 rounded-xl"> 
+                  Security 
+                </span>
+              </div>
+              <div  class="text-text-primary text-14 leading-[18px]">
+                <a  class="after:absolute after:inset-0">
+                  <span class="max-2-lines" data-v-4aad0b0b="">
+                    Research Labs seems to be served over an unsecured HTTP connection. We strongly recommend enabling HTTPS.
+                  </span>
+                </a>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </section>
+      <section class="card bg-layer pt-16 pb-8 flex flex-col gap-24 rounded flex-1 min-h-[300px] max-h-[320px]" data-v-01dcd351="">
+        <div class="flex justify-between px-16 pb-0">
+          <h2 class="text-heading-compact-01 text-text-primary m-0">Learning</h2>
+          <a href="https://learning.quantum-computing.ibm.com" target="_blank" class="text-link-01 hover:text-link-primary-hover transition-colors text-body-compact-01 hover:underline flex items-center gap-4"> Open app <svg width="32" height="32" viewBox="0 0 32 32" aria-label="Open in a new tab" class="duo--Icon duo--IconArrowUpRight w-16 h-16">
+              <path d="M26 22h-2l-.001-12.585L7.414 26 6 24.586 22.585 8H10V6h16v16z"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="content flex-1 overflow-x-auto">
+          <div class="card-items" data-v-6e072ef5="">
+            <div class="guide-card flex flex-col gap-4 px-16 py-[20px] relative hover:bg-hover-ui pt-16" data-v-6e072ef5="">
+              <div class="text-text-secondary text-label-01 mb-4"> Course <span class="ml-8 text-purple-70 dark:text-purple-20 bg-purple-20 dark:bg-purple-70 px-8 py-2 rounded-xl"> New </span>
+              </div>
+              <div class="text-text-primary text-14 leading-[18px]">
+                <a href="https://learning.quantum-computing.ibm.com/course/fundamentals-of-quantum-algorithms" class="after:absolute after:inset-0">Fundamentals of quantum algorithms</a>
+              </div>
+            </div>
+            <div class="launcher-card flex justify-start items-center px-16 py-[20px] hover:bg-layer-hover relative" data-v-6e072ef5="">
+              <div class="flex w-full">
+                <div class="flex-1">
+                  <div class="text-body-compact-01 text-text-primary mb-4">
+                    <a href="/composer" class="after:absolute after:inset-0"> IBM Quantum Composer </a>
+                  </div>
+                  <div class="text-text-helper text-label-01">Graphically build circuits</div>
+                </div>
+                <div class="self-center">
+                  <div class="composer-icon h-24 w-24" data-v-0fd91930=""></div>
+                </div>
+              </div>
+            </div>
+            <div class="launcher-card flex justify-start items-center px-16 py-[20px] hover:bg-layer-hover relative" data-v-6e072ef5="">
+              <div class="flex w-full">
+                <div class="flex-1">
+                  <div class="text-body-compact-01 text-text-primary mb-4">
+                    <a href="https://lab.quantum-computing.ibm.com/hub/user/641185bf9fcfb010b29b2585/lab" class="after:absolute after:inset-0"> IBM Quantum Lab</a>
+                  </div>
+                  <div class="text-text-helper text-label-01">Develop quantum experiments</div>
+                </div>
+                <div class="self-center">
+                  <div class="lab-icon h-24 w-24" data-v-eb68b364=""></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!---->
+    </div>
+    <section id="notifications" class="recent-notifications w-full rounded bg-ui-01 lg:bg-transparent notifications self-start" data-v-ec0e2822="" data-v-01dcd351="">
+      <div class="flex justify-between m-16" data-v-ec0e2822="">
+        <a href="/notifications" tabindex="0" class="notification-link duo--Link" data-v-620a3e4c="" data-v-ec0e2822="">
+          <h2 class="text-productive-heading-01 m-0" data-v-ec0e2822="">What's new</h2>
+          <svg width="32" height="32" viewBox="0 0 32 32" class="duo--Icon duo--IconArrowRight ml-8 w-[18px] h-[18px]" data-v-ec0e2822="">
+            <path d="M17 6l-1.41 1.41L23.17 15H2v2h21.17l-7.58 7.59L17 26l10-10L17 6z"></path>
+          </svg>
+        </a>
+      </div>
+      <div data-v-ec0e2822="">
+        <!---->
+        <div data-v-ec0e2822="">
+          <div data-v-12bbea87="" data-v-ec0e2822="">
+            <div data-v-12bbea87="" class="px-16">
+              <div data-v-12bbea87="" class="flex pb-16">
+                <div data-v-12bbea87="" class="dot-container pt-4">
+                  <div data-v-12bbea87="" class="rounded-lg dot bg-inverse-support-04"></div>
+                </div>
+                <div data-v-12bbea87="">
+                  <div data-v-12bbea87="" class="text-label-01 text-text-primary mb-4">Service Alert</div>
+                  <h3 data-v-12bbea87="" class="text-body-compact-01 text-text-primary mb-4 mt-0">Upcoming updates to Open Plan access and terms</h3>
+                  <div data-v-12bbea87="" class="text-label-01 text-text-secondary">
+                    <span data-v-12bbea87="" title="Jul 26, 2023 10:42 PM">About 1 month ago</span>
+                    <!---->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-v-12bbea87="" data-v-ec0e2822="">
+            <div data-v-12bbea87="" class="px-16">
+              <div data-v-12bbea87="" class="flex pb-16">
+                <div data-v-12bbea87="" class="dot-container pt-4">
+                  <div data-v-12bbea87="" class="rounded-lg dot bg-inverse-support-04"></div>
+                </div>
+                <div data-v-12bbea87="">
+                  <div data-v-12bbea87="" class="text-label-01 text-text-primary mb-4">Service Alert</div>
+                  <h3 data-v-12bbea87="" class="text-body-compact-01 text-text-primary mb-4 mt-0">Update on recent job errors</h3>
+                  <div data-v-12bbea87="" class="text-label-01 text-text-secondary">
+                    <span data-v-12bbea87="" title="May 06, 2023 3:33 AM">4 months ago</span>
+                    <!---->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-v-12bbea87="" data-v-ec0e2822="">
+            <div data-v-12bbea87="" class="px-16">
+              <div data-v-12bbea87="" class="flex pb-16">
+                <div data-v-12bbea87="" class="dot-container pt-4">
+                  <div data-v-12bbea87="" class="rounded-lg dot bg-inverse-support-04"></div>
+                </div>
+                <div data-v-12bbea87="">
+                  <div data-v-12bbea87="" class="text-label-01 text-text-primary mb-4">Service Alert</div>
+                  <h3 data-v-12bbea87="" class="text-body-compact-01 text-text-primary mb-4 mt-0">Planned retirement ibm_oslo and ibm_geneva</h3>
+                  <div data-v-12bbea87="" class="text-label-01 text-text-secondary">
+                    <span data-v-12bbea87="" title="Apr 13, 2023 4:25 AM">5 months ago</span>
+                    <!---->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-v-12bbea87="" data-v-ec0e2822="">
+            <div data-v-12bbea87="" class="px-16">
+              <div data-v-12bbea87="" class="flex pb-16">
+                <div data-v-12bbea87="" class="dot-container pt-4">
+                  <div data-v-12bbea87="" class="rounded-lg dot bg-inverse-support-04"></div>
+                </div>
+                <div data-v-12bbea87="">
+                  <div data-v-12bbea87="" class="text-label-01 text-text-primary mb-4">Service Alert</div>
+                  <h3 data-v-12bbea87="" class="text-body-compact-01 text-text-primary mb-4 mt-0">Temporary service deterioration</h3>
+                  <div data-v-12bbea87="" class="text-label-01 text-text-secondary">
+                    <span data-v-12bbea87="" title="Apr 01, 2023 5:09 AM">5 months ago</span>
+                    <!---->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-v-12bbea87="" data-v-ec0e2822="">
+            <div data-v-12bbea87="" class="px-16">
+              <div data-v-12bbea87="" class="flex pb-16">
+                <div data-v-12bbea87="" class="dot-container pt-4">
+                  <div data-v-12bbea87="" class="rounded-lg dot bg-inverse-support-04"></div>
+                </div>
+                <div data-v-12bbea87="">
+                  <div data-v-12bbea87="" class="text-label-01 text-text-primary mb-4">Service Alert</div>
+                  <h3 data-v-12bbea87="" class="text-body-compact-01 text-text-primary mb-4 mt-0">All 7Q systems have now been made broadly accessible</h3>
+                  <div data-v-12bbea87="" class="text-label-01 text-text-secondary">
+                    <span data-v-12bbea87="" title="Feb 21, 2023 12:01 AM">6 months ago</span>
+                    <!---->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-v-12bbea87="" data-v-ec0e2822="">
+            <div data-v-12bbea87="" class="px-16">
+              <div data-v-12bbea87="" class="flex pb-16">
+                <div data-v-12bbea87="" class="dot-container pt-4">
+                  <div data-v-12bbea87="" class="rounded-lg dot bg-inverse-support-04"></div>
+                </div>
+                <div data-v-12bbea87="">
+                  <div data-v-12bbea87="" class="text-label-01 text-text-primary mb-4">Quantum News</div>
+                  <h3 data-v-12bbea87="" class="text-body-compact-01 text-text-primary mb-4 mt-0">IBM Quantum Awards: Open Science Prize</h3>
+                  <div data-v-12bbea87="" class="text-label-01 text-text-secondary">
+                    <span data-v-12bbea87="" title="Jan 17, 2023 8:00 PM">7 months ago</span>
+                    <span data-v-12bbea87="">
+                      <span data-v-12bbea87="" class="px-4">•</span>
+                      <a data-v-620a3e4c="" data-v-12bbea87="" tabindex="0" target="_blank" href="https://ibmquantumawards.bemyapp.com/" class="text-link-01 text-label-01 duo--Link"> Learn more </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!---->
+        <!---->
+      </div>
+    </section>
+  </div>
+  <!---->
+</div>
+<div>
+  <footer class="px-32 border-solid border-0 border-t border-t-border-subtle flex md:items-center  py-[20px] theme-variant bg-ui-background global-footer" style="position: fixed; bottom: 0; width: 100%;">
+     <div class="flex flex-col flex-1 gap-16 md:flex-1 md:flex-row md:gap-40 md:items-center">
+        <ul class="flex flex-col gap-8 md:flex-row md:items-center md:gap-24 m-0 p-0">
+        <li class="flex">
+            <a target="_blank" href="https://github.com/TheFlightSims/research-labs" class="appearance-none border-0 bg-transparent text-label-01 text-text-helper hover:text-text-primary transition-colors cursor-pointer p-0 m-0 no-underline">View source on GitHub</a>
+        </li>
+        <li class="flex">
+            <a target="_blank" href="https://github.com/TheFlightSims/research-labs/issues" class="appearance-none border-0 bg-transparent text-label-01 text-text-helper hover:text-text-primary transition-colors cursor-pointer p-0 m-0 no-underline">Support</a>
+        </li>
+        </ul>
+     </div>
+    </footer>
 </div>
 {% endblock main %}
-
 {% block script %}
 {{ super() }}
 <script type="text/javascript">require(["home"]);</script>
+<script>
+  if (window.location.protocol === "http:") {
+    // unhide http warning
+    var warning = document.getElementById('insecure-login-warning');
+    warning.className = warning.className.replace(/\bhidden\b/, '');
+  }
+  // setup onSubmit feedback
+  $('form').submit((e) => {
+    var form = $(e.target);
+    form.find('.feedback-container>input').attr('disabled', true);
+    form.find('.feedback-container>*').toggleClass('hidden');
+    form.find('.feedback-widget>*').toggleClass('fa-pulse');
+  });
+</script>
 {% endblock %}
