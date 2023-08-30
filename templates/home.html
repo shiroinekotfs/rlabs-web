@@ -10,6 +10,11 @@
     <div class="name md:col-span-2 lg:col-span-3 flex flex-col justify-between sm:min-h-[100px]" data-v-01dcd351="">
       <div class="text-body-compact-01" data-v-01dcd351="">
         <span>Welcome, {{user.name}}</span>
+        {% if two_factor_auth %}
+          <span class="ml-8 text-purple-70 dark:text-purple-20 bg-purple-20 dark:bg-purple-70 px-8 py-2 rounded-xl"> 2FA Status: Enabled </span>
+        {% else %}
+          <span class="ml-8 text-purple-70 dark:text-purple-20 bg-purple-20 dark:bg-purple-70 px-8 py-2 rounded-xl"> 2FA Status: Disabled </span>
+        {% endif %}
       </div>
       <h1 class="font-300 text-32 md:text-36 lg:text-48 leading-[40px] md:leading-[44px] lg:leading-[56px] m-0" data-v-01dcd351=""> Research Labs </h1>
     </div>
@@ -32,9 +37,10 @@
   </div>
   <div class="mt-16 mx-16 md:mx-32 text-heading-compact-01 flex flex-row items-start md:items-center bg-ui-03 rounded" data-v-01dcd351="">
     <div class="flex-1 p-16 flex flex-col gap-8 md:block" data-v-01dcd351="">
-      <span data-v-01dcd351="">🎉</span>
-      <span data-v-01dcd351="">Research Labs just got updated!</span>
-      <a tabindex="0" href="https://docs.quantum-computing.ibm.com/announcements/product-updates/2023-08-18-new-navigation-and-application-updates" target="_blank" class="font-400 duo--Link" data-v-620a3e4c="" data-v-01dcd351=""> Learn more <svg width="32" height="32" viewBox="0 0 32 32" aria-label="open in new tab" class="duo--Icon duo--IconArrowRight !w-16 !h-16" data-v-01dcd351="" data-v-620a3e4c="">
+      <span data-v-01dcd351="">😘 You're new to Research Labs? Got confused? No worry,</span>
+      <a tabindex="0" href="https://jupyterlab.readthedocs.io/en/latest/index.html" target="_blank" class="font-400 duo--Link" data-v-620a3e4c="" data-v-01dcd351="">
+        see this getting started guide on Jupyter Lab (yes, Research Labs is based on Jupyter Lab and IBM-Q)!
+        <svg width="32" height="32" viewBox="0 0 32 32" aria-label="open in new tab" class="duo--Icon duo--IconArrowRight !w-16 !h-16" data-v-01dcd351="" data-v-620a3e4c="">
           <path d="M17 6l-1.41 1.41L23.17 15H2v2h21.17l-7.58 7.59L17 26l10-10L17 6z"></path>
         </svg>
       </a>
@@ -48,7 +54,7 @@
         </div>
       </div>
       <div class="p-16 pt-0 text-body-compact-01 text-text-secondary" data-v-15d66aae="">
-        <div class="mb-32 max-w-[400px]" data-v-15d66aae=""> Manange your lab here. <br><br><b>Note: </b>It is recommended that you stop when not in use to reduce server latency as well as attack interface. </div>
+        <div class="mb-32 max-w-[400px]" data-v-15d66aae=""> Manage your lab easily. Start/Stop and View in just a few clicks! <br><br><b>Note: </b>It is recommended that you stop when not in use to reduce server latency as well as attack interface. </div>
         {% if default_server.active %}
           <a id="stop" role="button" class="btn btn-lg btn-danger">
             Stop My Lab
@@ -57,7 +63,7 @@
         <a id="start" role="button" class="btn btn-lg btn-primary" href="{{ url }}" target="_blank">
           {% if not default_server.active %}Start{% endif %}
           My Labs
-          </a>
+        </a>
       </div>
     </section>
     <div class="cards self-start flex flex-col lg:flex-row gap-16 md:gap-24 lg:gap-16" data-v-01dcd351="">
@@ -103,7 +109,8 @@
       <section class="card bg-layer pt-16 pb-8 flex flex-col gap-24 rounded flex-1 min-h-[300px] max-h-[320px]" data-v-4aad0b0b="" data-v-01dcd351="">
         <div class="flex justify-between px-16 pb-0">
           <h2 class="text-heading-compact-01 text-text-primary m-0">Lab Notification</h2>
-          <a href="/hub/spawn/administrator" class="text-link-01 hover:text-link-primary-hover transition-colors text-body-compact-01 hover:underline flex items-center gap-4"> Open Lab <svg width="32" height="32" viewBox="0 0 32 32" aria-label="Open in a new tab" class="duo--Icon duo--IconArrowUpRight w-16 h-16">
+          <a href="/hub/spawn/administrator" class="text-link-01 hover:text-link-primary-hover transition-colors text-body-compact-01 hover:underline flex items-center gap-4"> Open Lab 
+            <svg width="32" height="32" viewBox="0 0 32 32" aria-label="Open in a new tab" class="duo--Icon duo--IconArrowUpRight w-16 h-16">
               <path d="M26 22h-2l-.001-12.585L7.414 26 6 24.586 22.585 8H10V6h16v16z"></path>
             </svg>
           </a>
@@ -161,63 +168,47 @@
       </section>
       <section class="card bg-layer pt-16 pb-8 flex flex-col gap-24 rounded flex-1 min-h-[300px] max-h-[320px]" data-v-01dcd351="">
         <div class="flex justify-between px-16 pb-0">
-          <h2 class="text-heading-compact-01 text-text-primary m-0">Learning</h2>
-          <a href="https://learning.quantum-computing.ibm.com" target="_blank" class="text-link-01 hover:text-link-primary-hover transition-colors text-body-compact-01 hover:underline flex items-center gap-4"> Open app <svg width="32" height="32" viewBox="0 0 32 32" aria-label="Open in a new tab" class="duo--Icon duo--IconArrowUpRight w-16 h-16">
-              <path d="M26 22h-2l-.001-12.585L7.414 26 6 24.586 22.585 8H10V6h16v16z"></path>
-            </svg>
-          </a>
+          <h2 class="text-heading-compact-01 text-text-primary m-0">Documentation</h2>
         </div>
         <div class="content flex-1 overflow-x-auto">
           <div class="card-items" data-v-6e072ef5="">
             <div class="guide-card flex flex-col gap-4 px-16 py-[20px] relative hover:bg-hover-ui pt-16" data-v-6e072ef5="">
-              <div class="text-text-secondary text-label-01 mb-4"> Course <span class="ml-8 text-purple-70 dark:text-purple-20 bg-purple-20 dark:bg-purple-70 px-8 py-2 rounded-xl"> New </span>
+              <div class="text-text-secondary text-label-01 mb-4"> Getting started <span class="ml-8 text-purple-70 dark:text-purple-20 bg-purple-20 dark:bg-purple-70 px-8 py-2 rounded-xl"> Beginner </span>
               </div>
               <div class="text-text-primary text-14 leading-[18px]">
-                <a href="https://learning.quantum-computing.ibm.com/course/fundamentals-of-quantum-algorithms" class="after:absolute after:inset-0">Fundamentals of quantum algorithms</a>
+                <a href="https://jupyterlab.readthedocs.io/en/latest/index.html" class="after:absolute after:inset-0">Getting started with Research Labs</a>
               </div>
+              <div class="text-text-helper text-label-01">Research Labs, based on Jupyter Project, IBM-Q and many other projects. This tutorial will help you to find out the most basic things on there.</div>
             </div>
             <div class="launcher-card flex justify-start items-center px-16 py-[20px] hover:bg-layer-hover relative" data-v-6e072ef5="">
               <div class="flex w-full">
                 <div class="flex-1">
                   <div class="text-body-compact-01 text-text-primary mb-4">
-                    <a href="/composer" class="after:absolute after:inset-0"> IBM Quantum Composer </a>
+                    <a href="https://github.com/TheFlightSims/research-labs" class="after:absolute after:inset-0"> Contribute Research Labs on GitHub 
+                      <span class="ml-8 text-purple-70 dark:text-purple-20 bg-purple-20 dark:bg-purple-70 px-8 py-2 rounded-xl"> Advanced </span>
+                    </a>
                   </div>
-                  <div class="text-text-helper text-label-01">Graphically build circuits</div>
+                  <div class="text-text-helper text-label-01">Your contributions help us to improve the most basic and advanced mistake, as well adding even features. We always welcome you~!</div>
                 </div>
                 <div class="self-center">
                   <div class="composer-icon h-24 w-24" data-v-0fd91930=""></div>
                 </div>
               </div>
             </div>
-            <div class="launcher-card flex justify-start items-center px-16 py-[20px] hover:bg-layer-hover relative" data-v-6e072ef5="">
-              <div class="flex w-full">
-                <div class="flex-1">
-                  <div class="text-body-compact-01 text-text-primary mb-4">
-                    <a href="https://lab.quantum-computing.ibm.com/hub/user/641185bf9fcfb010b29b2585/lab" class="after:absolute after:inset-0"> IBM Quantum Lab</a>
-                  </div>
-                  <div class="text-text-helper text-label-01">Develop quantum experiments</div>
-                </div>
-                <div class="self-center">
-                  <div class="lab-icon h-24 w-24" data-v-eb68b364=""></div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
-      <!---->
     </div>
     <section id="notifications" class="recent-notifications w-full rounded bg-ui-01 lg:bg-transparent notifications self-start" data-v-ec0e2822="" data-v-01dcd351="">
       <div class="flex justify-between m-16" data-v-ec0e2822="">
         <a href="/notifications" tabindex="0" class="notification-link duo--Link" data-v-620a3e4c="" data-v-ec0e2822="">
-          <h2 class="text-productive-heading-01 m-0" data-v-ec0e2822="">What's new</h2>
+          <h2 class="text-productive-heading-01 m-0" data-v-ec0e2822="">😍What's new?</h2>
           <svg width="32" height="32" viewBox="0 0 32 32" class="duo--Icon duo--IconArrowRight ml-8 w-[18px] h-[18px]" data-v-ec0e2822="">
             <path d="M17 6l-1.41 1.41L23.17 15H2v2h21.17l-7.58 7.59L17 26l10-10L17 6z"></path>
           </svg>
         </a>
       </div>
       <div data-v-ec0e2822="">
-        <!---->
         <div data-v-ec0e2822="">
           <div data-v-12bbea87="" data-v-ec0e2822="">
             <div data-v-12bbea87="" class="px-16">
@@ -226,98 +217,50 @@
                   <div data-v-12bbea87="" class="rounded-lg dot bg-inverse-support-04"></div>
                 </div>
                 <div data-v-12bbea87="">
-                  <div data-v-12bbea87="" class="text-label-01 text-text-primary mb-4">Service Alert</div>
-                  <h3 data-v-12bbea87="" class="text-body-compact-01 text-text-primary mb-4 mt-0">Upcoming updates to Open Plan access and terms</h3>
+                  <div data-v-12bbea87="" class="text-label-01 text-text-primary mb-4">Research Labs developers news</div>
+                  <h3 data-v-12bbea87="" class="text-body-compact-01 text-text-primary mb-4 mt-0">Research Labs just got its initial release!</h3>
                   <div data-v-12bbea87="" class="text-label-01 text-text-secondary">
-                    <span data-v-12bbea87="" title="Jul 26, 2023 10:42 PM">About 1 month ago</span>
-                    <!---->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div data-v-12bbea87="" data-v-ec0e2822="">
-            <div data-v-12bbea87="" class="px-16">
-              <div data-v-12bbea87="" class="flex pb-16">
-                <div data-v-12bbea87="" class="dot-container pt-4">
-                  <div data-v-12bbea87="" class="rounded-lg dot bg-inverse-support-04"></div>
-                </div>
-                <div data-v-12bbea87="">
-                  <div data-v-12bbea87="" class="text-label-01 text-text-primary mb-4">Service Alert</div>
-                  <h3 data-v-12bbea87="" class="text-body-compact-01 text-text-primary mb-4 mt-0">Update on recent job errors</h3>
-                  <div data-v-12bbea87="" class="text-label-01 text-text-secondary">
-                    <span data-v-12bbea87="" title="May 06, 2023 3:33 AM">4 months ago</span>
-                    <!---->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div data-v-12bbea87="" data-v-ec0e2822="">
-            <div data-v-12bbea87="" class="px-16">
-              <div data-v-12bbea87="" class="flex pb-16">
-                <div data-v-12bbea87="" class="dot-container pt-4">
-                  <div data-v-12bbea87="" class="rounded-lg dot bg-inverse-support-04"></div>
-                </div>
-                <div data-v-12bbea87="">
-                  <div data-v-12bbea87="" class="text-label-01 text-text-primary mb-4">Service Alert</div>
-                  <h3 data-v-12bbea87="" class="text-body-compact-01 text-text-primary mb-4 mt-0">Planned retirement ibm_oslo and ibm_geneva</h3>
-                  <div data-v-12bbea87="" class="text-label-01 text-text-secondary">
-                    <span data-v-12bbea87="" title="Apr 13, 2023 4:25 AM">5 months ago</span>
-                    <!---->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div data-v-12bbea87="" data-v-ec0e2822="">
-            <div data-v-12bbea87="" class="px-16">
-              <div data-v-12bbea87="" class="flex pb-16">
-                <div data-v-12bbea87="" class="dot-container pt-4">
-                  <div data-v-12bbea87="" class="rounded-lg dot bg-inverse-support-04"></div>
-                </div>
-                <div data-v-12bbea87="">
-                  <div data-v-12bbea87="" class="text-label-01 text-text-primary mb-4">Service Alert</div>
-                  <h3 data-v-12bbea87="" class="text-body-compact-01 text-text-primary mb-4 mt-0">Temporary service deterioration</h3>
-                  <div data-v-12bbea87="" class="text-label-01 text-text-secondary">
-                    <span data-v-12bbea87="" title="Apr 01, 2023 5:09 AM">5 months ago</span>
-                    <!---->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div data-v-12bbea87="" data-v-ec0e2822="">
-            <div data-v-12bbea87="" class="px-16">
-              <div data-v-12bbea87="" class="flex pb-16">
-                <div data-v-12bbea87="" class="dot-container pt-4">
-                  <div data-v-12bbea87="" class="rounded-lg dot bg-inverse-support-04"></div>
-                </div>
-                <div data-v-12bbea87="">
-                  <div data-v-12bbea87="" class="text-label-01 text-text-primary mb-4">Service Alert</div>
-                  <h3 data-v-12bbea87="" class="text-body-compact-01 text-text-primary mb-4 mt-0">All 7Q systems have now been made broadly accessible</h3>
-                  <div data-v-12bbea87="" class="text-label-01 text-text-secondary">
-                    <span data-v-12bbea87="" title="Feb 21, 2023 12:01 AM">6 months ago</span>
-                    <!---->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div data-v-12bbea87="" data-v-ec0e2822="">
-            <div data-v-12bbea87="" class="px-16">
-              <div data-v-12bbea87="" class="flex pb-16">
-                <div data-v-12bbea87="" class="dot-container pt-4">
-                  <div data-v-12bbea87="" class="rounded-lg dot bg-inverse-support-04"></div>
-                </div>
-                <div data-v-12bbea87="">
-                  <div data-v-12bbea87="" class="text-label-01 text-text-primary mb-4">Quantum News</div>
-                  <h3 data-v-12bbea87="" class="text-body-compact-01 text-text-primary mb-4 mt-0">IBM Quantum Awards: Open Science Prize</h3>
-                  <div data-v-12bbea87="" class="text-label-01 text-text-secondary">
-                    <span data-v-12bbea87="" title="Jan 17, 2023 8:00 PM">7 months ago</span>
+                    <span data-v-12bbea87="">Jun 3, 2023 7:56AM (GMT0)</span>
                     <span data-v-12bbea87="">
-                      <span data-v-12bbea87="" class="px-4">•</span>
-                      <a data-v-620a3e4c="" data-v-12bbea87="" tabindex="0" target="_blank" href="https://ibmquantumawards.bemyapp.com/" class="text-link-01 text-label-01 duo--Link"> Learn more </a>
+                      <a data-v-620a3e4c="" data-v-12bbea87="" tabindex="0" target="_blank" href="https://github.com/TheFlightSims/research-labs/releases/tag/June" class="text-link-01 text-label-01 duo--Link"> Learn more </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-v-12bbea87="" data-v-ec0e2822="">
+            <div data-v-12bbea87="" class="px-16">
+              <div data-v-12bbea87="" class="flex pb-16">
+                <div data-v-12bbea87="" class="dot-container pt-4">
+                  <div data-v-12bbea87="" class="rounded-lg dot bg-inverse-support-04"></div>
+                </div>
+                <div data-v-12bbea87="">
+                  <div data-v-12bbea87="" class="text-label-01 text-text-primary mb-4">TheFlightSims News</div>
+                  <h3 data-v-12bbea87="" class="text-body-compact-01 text-text-primary mb-4 mt-0">License distribution just got an update!</h3>
+                  <div data-v-12bbea87="" class="text-label-01 text-text-secondary">
+                    <span data-v-12bbea87="">Jul 2, 2023 1:36PM (GMT0)</span>
+                    <span data-v-12bbea87="">
+                      <a data-v-620a3e4c="" data-v-12bbea87="" tabindex="0" target="_blank" href="https://github.com/TheFlightSims/.github/blob/main/guides/Licenses%2C%20Credits%20and%20Attributions.md" class="text-link-01 text-label-01 duo--Link"> Read the License list </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-v-12bbea87="" data-v-ec0e2822="">
+            <div data-v-12bbea87="" class="px-16">
+              <div data-v-12bbea87="" class="flex pb-16">
+                <div data-v-12bbea87="" class="dot-container pt-4">
+                  <div data-v-12bbea87="" class="rounded-lg dot bg-inverse-support-04"></div>
+                </div>
+                <div data-v-12bbea87="">
+                  <div data-v-12bbea87="" class="text-label-01 text-text-primary mb-4">TheFlightSims News</div>
+                  <h3 data-v-12bbea87="" class="text-body-compact-01 text-text-primary mb-4 mt-0">New Code of Conduct for contributors has been applied</h3>
+                  <div data-v-12bbea87="" class="text-label-01 text-text-secondary">
+                    <span data-v-12bbea87="">Jul 2, 2023 1:36PM (GMT0)</span>
+                    <span data-v-12bbea87="">
+                      <a data-v-620a3e4c="" data-v-12bbea87="" tabindex="0" target="_blank" href="https://github.com/TheFlightSims/.github/blob/main/guides/Code%20of%20Conduct.md" class="text-link-01 text-label-01 duo--Link"> Read the Code of Conduct </a>
                     </span>
                   </div>
                 </div>
@@ -325,12 +268,9 @@
             </div>
           </div>
         </div>
-        <!---->
-        <!---->
       </div>
     </section>
   </div>
-  <!---->
 </div>
 <div>
   <footer class="px-32 border-solid border-0 border-t border-t-border-subtle flex md:items-center  py-[20px] theme-variant bg-ui-background global-footer" style="position: fixed; bottom: 0; width: 100%;">
