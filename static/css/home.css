@@ -16115,79 +16115,79 @@ ul[data-v-8fe56814] {
 @font-face {
     font-family: IBM Plex Sans;
     font-weight: 300;
-    src: url(/_nuxt/fonts/IBMPlexSans-Light.fe6a0ca5.b4769de.woff2)
+    src: url(/static/fonts/IBMPlexSans-Light.woff2)
         format("woff2");
 }
 @font-face {
     font-family: IBM Plex Sans;
     font-weight: 400;
-    src: url(/_nuxt/fonts/IBMPlexSans-Regular.bb07700d.2490bb1.woff2)
+    src: url(/static/fonts/IBMPlexSans-Regular.woff2)
         format("woff2");
 }
 @font-face {
     font-family: IBM Plex Sans;
     font-weight: 600;
-    src: url(/_nuxt/fonts/IBMPlexSans-SemiBold.ebb2f943.f4395ec.woff2)
+    src: url(/static/fonts/IBMPlexSans-SemiBold.woff2)
         format("woff2");
 }
 @font-face {
     font-family: IBM Plex Sans;
     font-style: italic;
     font-weight: 300;
-    src: url(/_nuxt/fonts/IBMPlexSans-LightItalic.ca8b0170.a2d5a7f.woff2)
+    src: url(/static/fonts/IBMPlexSans-LightItalic.woff2)
         format("woff2");
 }
 @font-face {
     font-family: IBM Plex Sans;
     font-style: italic;
     font-weight: 400;
-    src: url(/_nuxt/fonts/IBMPlexSans-Italic.9ef62df9.5b2765f.woff2)
+    src: url(/static/fonts/IBMPlexSans-Italic.woff2)
         format("woff2");
 }
 @font-face {
     font-family: IBM Plex Sans;
     font-style: italic;
     font-weight: 600;
-    src: url(/_nuxt/fonts/IBMPlexSans-SemiBoldItalic.895c3b75.bdfb43e.woff2)
+    src: url(/static/fonts/IBMPlexSans-SemiBoldItalic.woff2)
         format("woff2");
 }
 @font-face {
     font-family: IBM Plex Mono;
     font-weight: 300;
-    src: url(/_nuxt/fonts/IBMPlexMono-Light.61b27334.d3e8484.woff2)
+    src: url(/static/fonts/IBMPlexMono-Light.woff2)
         format("woff2");
 }
 @font-face {
     font-family: IBM Plex Mono;
     font-weight: 400;
-    src: url(/_nuxt/fonts/IBMPlexMono-Regular.c7832ed5.b877c66.woff2)
+    src: url(/static/fonts/IBMPlexMono-Regular.woff2)
         format("woff2");
 }
 @font-face {
     font-family: IBM Plex Mono;
     font-weight: 600;
-    src: url(/_nuxt/fonts/IBMPlexMono-SemiBold.66143bf2.4ce94f8.woff2)
+    src: url(/static/fonts/IBMPlexMono-SemiBold.woff2)
         format("woff2");
 }
 @font-face {
     font-family: IBM Plex Mono;
     font-style: italic;
     font-weight: 300;
-    src: url(/_nuxt/fonts/IBMPlexMono-LightItalic.acea72af.052ded8.woff2)
+    src: url(/static/fonts/IBMPlexMono-LightItalic.woff2)
         format("woff2");
 }
 @font-face {
     font-family: IBM Plex Mono;
     font-style: italic;
     font-weight: 400;
-    src: url(/_nuxt/fonts/IBMPlexMono-Italic.e013d7fb.1bc197f.woff2)
+    src: url(/static/fonts/IBMPlexMono-Italic.woff2)
         format("woff2");
 }
 @font-face {
     font-family: IBM Plex Mono;
     font-style: italic;
     font-weight: 600;
-    src: url(/_nuxt/fonts/IBMPlexMono-SemiBoldItalic.fb1e21e5.23a60c6.woff2)
+    src: url(/static/fonts/IBMPlexMono-SemiBoldItalic.woff2)
         format("woff2");
 }
 .nuxt-progress {
@@ -16612,24 +16612,24 @@ html {
     top: 0;
 }
 .composer-icon[data-v-0fd91930] {
-    background-image: url(/_nuxt/img/composer-light.b948338.svg);
+    background-image: url(/static/img/composer-light.b948338.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 .theme-g100 .composer-icon[data-v-0fd91930],
 .theme-g90 .composer-icon[data-v-0fd91930] {
-    background-image: url(/_nuxt/img/composer-dark.4f37cc9.svg);
+    background-image: url(/static/img/composer-dark.4f37cc9.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 .lab-icon[data-v-eb68b364] {
-    background-image: url(/_nuxt/img/lab-light.5e8b970.svg);
+    background-image: url(/static/img/lab-light.5e8b970.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
 .theme-g100 .lab-icon[data-v-eb68b364],
 .theme-g90 .lab-icon[data-v-eb68b364] {
-    background-image: url(/_nuxt/img/lab-dark.98cc2e4.svg);
+    background-image: url(/static/img/lab-dark.98cc2e4.svg);
     background-repeat: no-repeat;
     background-size: contain;
 }
