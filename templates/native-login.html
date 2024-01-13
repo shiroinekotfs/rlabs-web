@@ -84,7 +84,7 @@
           <div>
             <h1 class="text-expressive-heading-03 text-text-01 whitespace-nowrap !mb-0">Sign in to Research Labs</h1>
             <br>
-            <p></p>
+            <br>
             <form action="{{login_url}}?next={{next}}" method="post" role="form">
 
               {% if login_error %}
@@ -96,7 +96,7 @@
               <input type="hidden" name="_xsrf" value="{{ xsrf }}"/>
               <label for="username_input">Username</label>
               <input id="username_input" type="text" name="username" val="{{username}}" autocapitalize="off" autocorrect="off" class="form-control" autofocus="autofocus" required />
-              <p></p>
+              <br>
               <label for='password_input'>Password</label>
               <div class="input-group">
                   <input id="password_input" type="password" name="password" val="" autocapitalize="off" autocorrect="off" class="form-control" />
@@ -104,14 +104,14 @@
                       <button id="eye" type="button" style="border:0;">Show</button>
                   </span>
               </div>
-              <p></p>
+              <br>
               {% if two_factor_auth %}
               <label for="2fa_input">Enter 2FA Code</label>
               <input id="2fa_input" type="text" autocapitalize="off" autocorrect="off" class="form-control" name="2fa" placeholder="If you don't have 2FA, leave empty" />
-              <p></p>
+              <br>
               {% endif %}
               <input type="submit" id="login_submit" class='my-24 !w-full !no-underline cds--btn cds--btn--primary' value='Sign In' />
-              <p></p>
+              <br>
             </form>
             <div>
               <div class="separator border-border-subtle border-solid border-0 border-t w-[3.5rem] mb-24"></div>
@@ -129,17 +129,22 @@
  </div>
 </div>
 <div>
-<footer class="px-32 border-solid border-0 border-t border-t-border-subtle flex md:items-center  py-[20px] theme-variant bg-ui-background global-footer" style="position: fixed; bottom: 0; width: 100%;">
-   <div class="flex flex-col flex-1 gap-16 md:flex-1 md:flex-row md:gap-40 md:items-center">
-      <ul class="flex flex-col gap-8 md:flex-row md:items-center md:gap-24 m-0 p-0">
-      <li class="flex">
-          <a target="_blank" href="https://github.com/TheFlightSims/research-labs" class="appearance-none border-0 bg-transparent text-label-01 text-text-helper hover:text-text-primary transition-colors cursor-pointer p-0 m-0 no-underline">View source on GitHub</a>
-      </li>
-      <li class="flex">
-          <a target="_blank" href="https://github.com/TheFlightSims/research-labs/issues" class="appearance-none border-0 bg-transparent text-label-01 text-text-helper hover:text-text-primary transition-colors cursor-pointer p-0 m-0 no-underline">Support</a>
-      </li>
-      </ul>
-   </div>
+<div>
+  <footer class="px-32 border-solid border-0 border-t border-t-border-subtle flex md:items-center gap-40 py-[20px] theme-variant bg-ui-background global-footer">
+      <div class="flex flex-col flex-1 gap-16 md:flex-1 md:flex-row md:gap-40 md:items-center">
+        <img src="/static/images/theflightsims-logo.png" alt="Girl in a jacket" width="16" height="16">
+        <ul class="flex flex-col gap-8 md:flex-row md:items-center md:gap-24 m-0 p-0">
+            <li class="flex"><a href="https://github.com/TheFlightSims/research-labs/discussions" class="appearance-none border-0 bg-transparent text-label-01 text-text-helper hover:text-text-primary transition-colors cursor-pointer p-0 m-0 no-underline" target="_blank">Discussions</a></li>
+            <li class="flex"><a href="https://github.com/TheFlightSims/research-labs/pulls" class="appearance-none border-0 bg-transparent text-label-01 text-text-helper hover:text-text-primary transition-colors cursor-pointer p-0 m-0 no-underline" target="_blank">View PRs</a></li>
+        </ul>
+      </div>
+      <div>
+        <div role="radiogroup" aria-required="false" dir="ltr" class="inline-flex rounded" aria-label="Theme" tabindex="0" style="outline:none">
+          <ul class="flex flex-col gap-8 md:flex-row md:items-center md:gap-24 m-0 p-0">
+            <li class="flex"><a href="https://github.com/TheFlightSims" class="appearance-none border-0 bg-transparent text-label-01 text-text-helper hover:text-text-primary transition-colors cursor-pointer p-0 m-0 no-underline" target="_blank">Follow @TheFlightSims on GitHub</a></li>
+          </ul>
+        </div>
+      </div>
   </footer>
 </div>
 {% endblock login %}
